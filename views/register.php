@@ -1,11 +1,8 @@
-<?php include "./header.php"; ?>
+<?php Core\View::render('header') ?>
 
 <body>
     <head class="header">
     </head>
-
-    <?php  echo "<h1>  Hello world  </h1>"; ?>
-
     <main class="container--center">
         <form action="/TodoApp/login" class="form" method="post">
             <h1 class="form__headline">Zaregistrovat se</h1>

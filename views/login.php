@@ -1,4 +1,5 @@
-<?php include "./header.php"; ?>
+<?php Core\View::render('header') ?>
+
 <body>
     <head class="header">
     </head>

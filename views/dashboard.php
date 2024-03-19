@@ -1,15 +1,4 @@
-<?php 
-declare(strict_types=1);
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-require "./server/db.php";
-include "./header.php";
-require "./server/functions.php";
-
-pozdrav();
-?>
-
+<?php Core\View::render('header') ?>
 <body>
     <a class="button--error" href="/TodoApp/logout">Odhlásit se</a>
     <main class="container">
