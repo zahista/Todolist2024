@@ -7,7 +7,7 @@ class Debug
     public static function dump($variable)
     {
         echo "<pre>";
-        var_dump($variable);
+        print_r($variable);
         echo "</pre>";
     }
 }

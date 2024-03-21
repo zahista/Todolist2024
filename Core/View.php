@@ -2,12 +2,17 @@
 
 namespace Core;
 
+use App\Models\Todo;
+
 class View
 {
-    public static function render($view_name)
+    public static function render($view_name, $data = [])
     {
-        $todos  = [];
+        foreach ($data ?? [] as $variable_name => $value) {
+            $variable_name = $variable_name;
+            $$variable_name = $value;
+        }
 
-        include "views/$view_name.php";
+        include "Views/$view_name.php";
     }
 }

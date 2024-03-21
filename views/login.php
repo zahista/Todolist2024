@@ -4,8 +4,9 @@
     <head class="header">
     </head>
 
+
     <main class="container--center">
-        <form action="" class="form" method="post">
+        <form action="/Todolist2024/" class="form" method="post">
             <h1 class="form__headline">Přihlásit se</h1>
             <input type="email" name="email" placeholder="Email" autofocus>
             <input id="password" type="text" name="password" placeholder="Heslo">
@@ -17,6 +18,6 @@
         </form>
     </main>
 
-    <script src="./resources/script.js"></script>
+    <script src="/Todolist2024/Views/resources/script.js"></script>
 </body>
 </html>
