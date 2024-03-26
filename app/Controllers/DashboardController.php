@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Core\View;
 use App\Models\Todo;
+use App\Models\User;
 use App\Utils\Debug;
 
 class DashboardController
@@ -11,13 +12,15 @@ class DashboardController
     public function show()
     {
        return View::render('dashboard', [
-        'todos'=> (new Todo)->all(), 
+        'todos'=>(new Todo)->whereNotDone(), 
+        'test' => 'Jsem dynamicky vytvořená proměná z pole'
         ]);
     }
 
     public function create()
     {
-        var_dump($_POST);
+      (new Todo)->create($_POST);
+       header('location: /Todolist2024/');
     }
 
 
@@ -26,11 +29,9 @@ class DashboardController
 
     }
 
-
     public function delete()
     {
 
     }
-
 
 }

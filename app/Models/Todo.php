@@ -1,40 +1,31 @@
-<?php 
+<?php
 
 namespace App\Models;
 
+use Core\Database;
+
 class Todo extends BaseModel
 {
-    protected $data = 
-    [
-        [
-            "id"=>1,
-            "title"=> "Test",
-            "description"=> "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus dolores quos quas voluptas cumque molestiae corporis recusandae perferendis nisi illo impedit optio, vitae facere praesentium excepturi, unde molestias voluptatem inventore.",
-            "done"=> 1,
-            "user_id"=> 34,
-        ],
-        [
-            "id"=>2,
-            "title"=> "Test",
-            "description"=> "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus dolores quos quas voluptas cumque molestiae corporis recusandae perferendis nisi illo impedit optio, vitae facere praesentium excepturi, unde molestias voluptatem inventore.",
-            "done"=> 1,
-            "user_id"=> 34,
-        ],
-        [
-            "id"=>3,
-            "title"=> "Test",
-            "description"=> "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus dolores quos quas voluptas cumque molestiae corporis recusandae perferendis nisi illo impedit optio, vitae facere praesentium excepturi, unde molestias voluptatem inventore.",
-            "done"=> 1,
-            "user_id"=> 34,
-        ],
-        [
-            "id"=>4,
-            "title"=> "Test",
-            "description"=> "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus dolores quos quas voluptas cumque molestiae corporis recusandae perferendis nisi illo impedit optio, vitae facere praesentium excepturi, unde molestias voluptatem inventore.",
-            "done"=> 1,
-            "user_id"=> 34,
-        ],
+    public function all()
+    {
+        return $this->database->dotaz('SELECT * from todos');
+    }
 
-    ];
+    public function whereDone()
+    {
+        return $this->database->dotaz('SELECT * from todos where done = 1');
+    }
 
+    public function whereNotDone()
+    {
+        return $this->database->dotaz('SELECT * from todos where done = 0');
+    }
+
+    public function create($data = [])
+    {
+        $sql = "INSERT INTO todos (title, description ,done, user_id) VALUES 
+        ("."'".$data['todo']."'".", "."'".$data['description']."'".", 0, 34)";
+
+        $this->database->dotaz($sql);
+    }
 }

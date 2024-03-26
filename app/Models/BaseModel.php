@@ -2,18 +2,14 @@
 
 namespace App\Models;
 
+use Core\Database;
 
 class BaseModel 
 {
-    protected $data = [];
+    protected $database;
 
-    public function all()
+    public function __construct()
     {
-        return $this->data;
-    }
-
-    public function find($id)
-    {
-        //vrátí usera s konkrétním ID
+        $this->database = new Database();
     }
 }

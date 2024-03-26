@@ -11,8 +11,8 @@
         </nav>
 
 
-
         <?php
+
         foreach ($todos as $todo) {
             echo '
                 <article class="todo">
@@ -35,7 +35,7 @@
 
     <div class="modal-overlay">
         <form action="/Todolist2024/" class="form" method="post">
-            <h1 class="form__headline">Nový úkol</h1>
+            <h1 class="form__headline"><?php echo $test ?></h1>
             <input name="todo" id="todo_input" type="text" placeholder="Úkol" required autofocus>
             <input name="description" type="text" placeholder="Popis úkolu" required>
             <input name="done" type="hidden" value="0" required>
