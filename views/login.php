@@ -13,7 +13,7 @@
             <small class="form__error-message">Heslo musí být delší než 5 znaků.</small>
             <button class="button--primary" type="submit">Přihlášení</button>
             <div class="form__footer">
-                <p>Nemáte účet? <a href="">Vytvořte si ho</a></p>
+                <p>Nemáte účet? <a href="/Todolist2024/registrace">Vytvořte si ho</a></p>
             </div>
         </form>
     </main>

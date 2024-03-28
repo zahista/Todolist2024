@@ -21,10 +21,24 @@ class Todo extends BaseModel
         return $this->database->dotaz('SELECT * from todos where done = 0');
     }
 
-    public function create($data = [])
+    public function create(array $data = [])
     {
         $sql = "INSERT INTO todos (title, description ,done, user_id) VALUES 
-        ("."'".$data['todo']."'".", "."'".$data['description']."'".", 0, 34)";
+        (" . "'" . $data['todo'] . "'" . ", " . "'" . $data['description'] . "'" . ", 0, 34)";
+
+        $this->database->dotaz($sql);
+    }
+
+    public function makeTodoDone(int $id)
+    {
+        $sql = "UPDATE todos SET done = 1 WHERE id = $id";
+
+        $this->database->dotaz($sql);
+    }
+
+    public function delete(int $id)
+    {
+        $sql = "DELETE FROM todos WHERE id = $id";
 
         $this->database->dotaz($sql);
     }

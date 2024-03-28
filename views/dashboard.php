@@ -1,4 +1,4 @@
-<?php Core\View::render('header') ?>
+<?php Core\View::render('header'); ?>
 
 <body>
     <main class="container">
@@ -12,30 +12,46 @@
 
 
         <?php
-
         foreach ($todos as $todo) {
-            echo '
-                <article class="todo">
-            <div>
-                <img src="" class="todo__img" alt="">
-                <h1 class="todo__headline">' . $todo['title'] . '</h1>
-                <p class="todo__description">' . $todo['description'] . '</p>
+            
+            if ($todo['done'] == 0) {
+
+                echo '<article class="todo">
+                <div>
+                    <img src="" class="todo__img" alt="">
+                    <h1 class="todo__headline">' . $todo['title'] . '</h1>
+                    <p class="todo__description">' . $todo['description'] . '</p>
+                </div>
+                <div> <form action="/Todolist2024/update">
+                <input name="todo_id" type="hidden" value="' . $todo['id'] . '">
+                <button type="submit" class="button--success">Hotovo</button>
+            </form>   
             </div>
-            <div>
-                <form action="/TodoApp/delete">
-                    <input name="todo_id" type="hidden">
+            </article>';
+
+            } else {
+
+                echo '<article class="todo--done">
+                <div>
+                    <img src="" class="todo__img" alt="">
+                    <h1 class="todo__headline">' . $todo['title'] . '</h1>
+                    <p class="todo__description">' . $todo['description'] . '</p>
+                </div>
+                <div> 
+                <form action="/Todolist2024/delete" method="post">
+                    <input name="todo_id" type="hidden" value="'.$todo['id'].'">
                     <button type="submit" class="button--error">Smazat</button>
                 </form>
             </div>
-        </article>
-                ';
+            </article>';
+            }
         }
         ?>
     </main>
 
     <div class="modal-overlay">
         <form action="/Todolist2024/" class="form" method="post">
-            <h1 class="form__headline"><?php echo $test ?></h1>
+            <h1 class="form__headline"><?php echo $modal_title ?></h1>
             <input name="todo" id="todo_input" type="text" placeholder="Úkol" required autofocus>
             <input name="description" type="text" placeholder="Popis úkolu" required>
             <input name="done" type="hidden" value="0" required>
