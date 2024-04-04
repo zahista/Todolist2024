@@ -2,10 +2,12 @@
 
 namespace App\Controllers;
 
+use Core\Auth;
 use Core\View;
 use App\Models\Todo;
 use App\Models\User;
 use App\Utils\Debug;
+use App\Models\BaseModel;
 
 class DashboardController
 {
@@ -19,17 +21,24 @@ class DashboardController
     public function show()
     {
 
-        //ověřit uživatel jse přihlášený
+        var_dump($this->todo->all());
+        die();
 
 
-        return View::render('dashboard', [
+        $filter = $_GET['todos_done'] ?? 0;
 
-            'todos' => $this->todo->all(),
-            'modal_title' => 'Vytvořit nový úkol'
+        if (Auth::user())
+        {
+            // pokud je v session user_id tak ukaž dashboard a data
+            return View::render('dashboard', [
+                'todos' => $this->todo->whereDone($filter),
+                'modal_title' => 'Vytvořit nový úkol',
+            ]);
 
-        ]);
-
-        //pokud ne tak se přesměruje na /login
+        } else {
+            //pokud ne tak se přesměruje na /login
+            header('location: /Todolist2024/login');
+        }
     }
 
     public function create()

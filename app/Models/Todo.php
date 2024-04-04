@@ -2,29 +2,25 @@
 
 namespace App\Models;
 
-use Core\Database;
+use Core\Auth;
+
 
 class Todo extends BaseModel
 {
     public function all()
     {
-        return $this->database->dotaz('SELECT * from todos');
+        return $this->medoo->select('todos', '*');
     }
 
-    public function whereDone()
+    public function whereDone($bool)
     {
-        return $this->database->dotaz('SELECT * from todos where done = 1');
-    }
-
-    public function whereNotDone()
-    {
-        return $this->database->dotaz('SELECT * from todos where done = 0');
+        return $this->database->dotaz("SELECT * from todos where done = $bool AND user_id =". Auth::user());
     }
 
     public function create(array $data = [])
     {
         $sql = "INSERT INTO todos (title, description ,done, user_id) VALUES 
-        (" . "'" . $data['todo'] . "'" . ", " . "'" . $data['description'] . "'" . ", 0, 34)";
+        (" . "'" . $data['todo'] . "'" . ", " . "'" . $data['description'] . "'" . ", 0, ".$data['user_id']." )";
 
         $this->database->dotaz($sql);
     }

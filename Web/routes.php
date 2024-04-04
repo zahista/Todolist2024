@@ -15,6 +15,7 @@ $router->addRoute('/Todolist2024/delete', DashboardController::class, 'delete', 
 
 $router->addRoute('/Todolist2024/login', LoginController::class, 'show', 'GET');
 $router->addRoute('/Todolist2024/login', LoginController::class, 'create', 'POST');
+$router->addRoute('/Todolist2024/logout', LoginController::class, 'logout', 'GET');
 
 
 $router->addRoute('/Todolist2024/registrace', RegisterController::class, 'show', 'GET');

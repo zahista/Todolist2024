@@ -1,0 +1,6 @@
+{
+    "require": {
+        "catfan/medoo": "^2.1",
+        "endroid/qr-code": "^5.0"
+    }
+}

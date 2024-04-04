@@ -1,4 +1,4 @@
-<?php Core\View::render('header') ?>
+<?php Core\View::render('header', ['title' => $title]) ?>
 
 <body>
     <head class="header">
@@ -6,7 +6,7 @@
 
 
     <main class="container--center">
-        <form action="/Todolist2024/" class="form" method="post">
+        <form action="/Todolist2024/login" class="form" method="post">
             <h1 class="form__headline">Přihlásit se</h1>
             <input type="email" name="email" placeholder="Email" autofocus>
             <input id="password" type="text" name="password" placeholder="Heslo">

@@ -22,17 +22,24 @@ class User extends BaseModel
         //zkontroluj jestli email je v DB 
         if($this->exists($data['email']))
         {
-            //přesměruj zpět na registraci s chybou
-            return header('location: /Todolist2024/registrace?error=email_taken');
+            //vrátí false, protože uživatel už existuje a insert neproběhl
+            return false;
             die();
         }    
-
 
         //pokud se to dostalo sem tak se vytvoří user v DB
         $sql = "INSERT INTO users (email, password) VALUES 
         (" . "'" . $data['email'] . "'" . ", " . "'" . $data['password'] . "'" . ")";
 
         $this->database->dotaz($sql);
+
+        return true;
+    }
+
+    public function findByEmail($email)
+    {
+        $sql ="SELECT * from users WHERE email = '$email'";
+        return $this->database->dotaz($sql)[0];
     }
 
 
