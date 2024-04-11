@@ -23,6 +23,4 @@ $router->addRoute('/Todolist2024/registrace', RegisterController::class, 'create
 
 
 
-
-
 $router->run();

@@ -10,7 +10,6 @@ class Router
 {
     public $routes = [];
 
-
     public function addRoute($route, $controller, $callback, $http_method)
     {
         $this->routes[$http_method.$route] =
@@ -19,7 +18,6 @@ class Router
                 'callback' => $callback,
             ];
     }
-
 
     public function run()
     {

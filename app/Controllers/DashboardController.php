@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Core\Auth;
 use Core\View;
+use Core\Email;
 use App\Models\Todo;
 use App\Models\User;
 use App\Utils\Debug;
@@ -20,10 +21,6 @@ class DashboardController
 
     public function show()
     {
-
-        var_dump($this->todo->all());
-        die();
-
 
         $filter = $_GET['todos_done'] ?? 0;
 
@@ -44,6 +41,13 @@ class DashboardController
     public function create()
     {
         $this->todo->create($_POST);
+
+        mail(
+            'zahista@gmail.com', 
+            'Předmět zprávy - může obsahovat i emotikony',
+            'Tělo zprávy - může obsahovat i HTML (můžeme si vytvořit šablony pro emaily).'
+        );
+
         header('location: /Todolist2024/');
     }
 
